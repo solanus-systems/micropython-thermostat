@@ -1,0 +1,10 @@
+{
+  "urls": [
+    ["thermostat.py", "thermostat.py"]
+  ],
+  "deps": [
+    ["time", "latest"],
+    ["logging", "latest"]
+  ],
+  "version": "0.1.0"
+}
