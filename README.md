@@ -1,5 +1,7 @@
 # micropython-thermostat
 
+[![ci](https://github.com/solanus-systems/micropython-thermostat/actions/workflows/ci.yml/badge.svg)](https://github.com/solanus-systems/micropython-thermostat/actions/workflows/ci.yml)
+
 An advanced thermostat for micropython devices using `asyncio`.
 
 ## Installation
