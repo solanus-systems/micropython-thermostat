@@ -4,13 +4,32 @@ An advanced thermostat for micropython devices using `asyncio`.
 
 ## Installation
 
-On a micropython device, install with `mip`:
+On a micropython device, install with `mip` from the REPL:
+
+```python
+>>> import mip
+>>> mip.install("github:solanus-systems/micropython-thermostat")
+```
+
+Or on a unix build of micropython via the CLI:
 
 ```bash
-mip install github:solanus-systems/micropython-thermostat
+micropython -m mip install github:solanus-systems/micropython-thermostat
 ```
 
 ## Usage
+
+This module implements async thermostat logic but does not include any hardware-specific code.
+
+Setup generally involves:
+
+1. Initialize a `Thermostat` instance and set the mode and setpoint(s)
+1. Write a polling loop or other function to read temperature from a sensor
+1. Call `set_temp()` to update with the temperature read from the sensor
+1. Check or `await` the `heating` and `cooling` flags (`asyncio.Event` objects)
+1. Use the flags to control relays or other hardware as needed
+
+### Example
 
 ```python
 from thermostat import Thermostat
@@ -31,7 +50,7 @@ therm.set_temp(read_sensor_temp())
 assert therm.heating.is_set()
 ```
 
-See `thermostat.py` for the full API.
+See `thermostat/__init__.py` for the full API.
 
 ## Developing
 
@@ -59,4 +78,19 @@ Then, you can run the tests using the micropython version of `unittest`:
 
 ```bash
 micropython -m unittest
+```
+
+## Releasing
+
+To release a new version, first cross-compile to micropython bytecode. You need `mpy-cross` in your `PATH`:
+
+```bash
+mpy-cross thermostat/__init__.py
+```
+
+Then, update the versions in `manifest.py` and `package.json`. Commit your changes and make a pull request. After merging, create a new tag and push to GitHub:
+
+```bash
+git tag vX.Y.Z
+git push --tags
 ```
