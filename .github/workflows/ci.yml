@@ -31,12 +31,12 @@ jobs:
           git submodule update --init
           make -C mpy-cross
           make -C ports/unix
-          cp ports/unix/build-standard/micropython ../bin
+          cp ports/unix/build-standard/micropython /usr/local/bin/
           cd ..
           rm -rf micropython
       - name: Install test dependencies
-        run: cat test-requirements.txt | grep -v "^$" | xargs -n 1 ./bin/micropython -m mip install
+        run: cat test-requirements.txt | grep -v "^$" | xargs -n 1 micropython -m mip install
       - name: Install the package
-        run: "./bin/micropython -m mip install github:${{ github.repository }}@${{ github.ref_name }}"
+        run: "micropython -m mip install github:${{ github.repository }}@${{ github.ref_name }}"
       - name: Run tests
-        run: ./bin/micropython -m unittest
+        run: micropython -m unittest
