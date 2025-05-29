@@ -1,7 +1,7 @@
 from time import localtime, mktime
 from unittest import TestCase
 
-from src.lib.thermostat import TemperatureReading, Thermostat
+from thermostat import TemperatureReading, Thermostat
 
 
 class TestThermostat(TestCase):

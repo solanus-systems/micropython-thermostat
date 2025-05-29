@@ -34,9 +34,9 @@ jobs:
           cp ports/unix/build-standard/micropython ../bin
           cd ..
           rm -rf micropython
-      - name: Install micropython dependencies
-        run: cat requirements.txt test-requirements.txt | grep -v "^$" | xargs -n 1 ./bin/micropython -m mip install
+      - name: Install test dependencies
+        run: cat test-requirements.txt | grep -v "^$" | xargs -n 1 ./bin/micropython -m mip install
       - name: Install the package
-        run: ./bin/micropython -m mip install ./package.json
+        run: "./bin/micropython -m mip install github:${{ github.repository }}@${{ github.ref_name }}"
       - name: Run tests
         run: ./bin/micropython -m unittest
