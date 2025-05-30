@@ -1,10 +1,10 @@
 {
   "urls": [
-    ["thermostat/__init__.mpy", "github:solanus-systems/micropython-thermostat/thermostat/__init__.mpy"]
+    ["thermostat/__init__.py", "github:solanus-systems/micropython-thermostat/thermostat/__init__.py"]
   ],
   "deps": [
     ["time", "latest"],
     ["logging", "latest"]
   ],
-  "version": "0.1.1"
+  "version": "0.2.1"
 }
